@@ -1,6 +1,6 @@
 export default ()=>{
 const viewSingUp = `
-  <img src="/src/img/mochilero.gif" alt="gif de una mochila">
+  <img src="" alt="gif de una mochila">
     <h1>TripVenture</h1>
     <form action="/signup">
       <input type="email" placeholder="e-mail" required>
