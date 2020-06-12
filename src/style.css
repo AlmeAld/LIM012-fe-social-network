@@ -6,83 +6,55 @@
 }
 
 /* style for login */
-.content-login{
-  /* display: flex; */
-  text-align: center;
-  height: 100vh;
-}
-/* img{
-  width: 150px; comentado temporal
-} */
-
-.logo-gif{
-  width: 100%;
-  /* text-align: center;   */
-}
-/* .title{
-  text-align: center;
-} */
-
-[required]{
-  border: none;
-  border-bottom: 0.1em solid green;
-  /* width: 100%; */
-}
-.email-login, .pasword-login{
-  /* display: flex; */
-  width: 70%;
-  height: 2rem;
-  margin: 3rem auto -1rem;
-  padding: 0px 15px;
-  outline: none;
-  font-size: 1.05rem;
-}
-.btn-logIn{
-  width: 73%;
-  height: 2.5rem;
-  margin-top: 3rem;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  font-size: 1.2rem;
-  background-color: #FF3900;
-  color: #F0F0F0;
-  cursor: pointer;
-}
-.login-option{
-  font-size: 1rem;
-  margin: 1.8rem auto 1rem;
-}
-i{
-  margin: 0 1rem 3rem;
-}
 
 /* codigo de prueba para mobile*/
 .container{
   background-color: #B8FCC6;
-  height: 100vh;
+  min-height: 100vh;
   padding: 2rem;
 }
 
 .prueba{
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction:  column; */
 }
 
 .title{
 margin-bottom: 1.5rem;
-/* font-family: Arial, Helvetica, sans-serif; */
 font-family: 'Londrina Solid', cursive;
 font-size: 2.5rem;
+text-align: center;
+color: black;
 }
 
 .welcome-text{
-  padding: 0 1.5rem 1.8rem;
+  padding: 0 1.5rem;
   
+}
+.signup{
+  text-align: center;
+}
+
+[required]{
+  width: 90%;
+  height: 2rem;
+  margin: 2rem auto -1rem;
+  padding: 0px 15px;
+  outline: none;
+  font-size: 1.05rem;
+  border: none;
+  border-bottom: 0.1em solid #f9c94ceb;
+  background-color: #B8FCC6;
+}
+::-webkit-input-placeholder { 
+  color:#362c2c
 }
 
 .img-home{
   width: 100%;
+  }
+.img-register{
+  width: 90%;
   }
 
 .fab, .fas{
@@ -96,30 +68,67 @@ font-size: 2.5rem;
   color: #f3f3f3;
 } */
 .btn{
-width: 100%;
-height: 3rem;
+margin-top: 1.5rem;
+padding: 8px 1rem;
 border-radius: 10px;
 border: none;
 outline: none;
-margin-top: 1.3rem;
-padding: 8px 1rem;
 cursor: pointer;
-text-align: left;
+text-align: center;
+color: #f3f3f3;
 }    
 .btn-tripventure{
-  /* background-color: #8dd69c; */
+  height: 3rem;
   background-color: #f9c94ceb;
-  color: #f3f3f3;
+  width: 90%;
+  font-size: 1.3rem;
 }
-.btn-facebook{
+.btn-facebook, .btn-google{
+  /* width: 25%; */
+  /* height: 4rem; */
+  border-radius: 50px;
+  margin-bottom: 0.5rem;
   background-color:#395185 ;
-  color: #f3f3f3;
 }
 .btn-google{
   background-color: #d9534f;
-  color: #f3f3f3;
-  margin-bottom: 1.5rem;
 }
 
 
 /* diseño para desktop */
+@media(min-width: 768px){
+  .container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+  .prueba{
+    grid-column-start: 2;
+    /* margin: auto; */
+    text-align: center;
+  }
+  .content{
+    height: 100%;
+    width: 60%;
+    /* justify-content: space-between  ; */
+  }
+  /* .container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  .prueba{
+    height: 100%;
+    width: 327px
+  }
+
+  .content{
+    height: 70%;
+    padding: 5rem;
+  }
+
+  .img-home{
+    width: 50%;
+    height: 70%;
+  } */
+}

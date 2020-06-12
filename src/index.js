@@ -1,3 +1,15 @@
-import { example } from './example.js';
+// import { example } from './example.js';
 
-example();
+// example();
+
+
+import { changeView } from './router/index.js'
+
+const init = () => {
+  changeView(window.location.hash)
+  window.addEventListener('hashchange', () => {
+    changeView(window.location.hash);
+  })
+}
+
+window.addEventListener('load', init)
