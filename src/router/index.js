@@ -1,9 +1,10 @@
 import { obComponents } from '../view/index.js';
 
+const container = document.getElementById('main')
+
 export const changeView = (route) => {
 
-  const container = document.getElementById('main')
-  // container.innerHTML='';
+  container.innerHTML='';
 
   switch (route) {
     case '':
@@ -13,7 +14,7 @@ export const changeView = (route) => {
     case '#/signUp':
       return container.appendChild(obComponents.signup)
 
-    default: return console.log('aqui sale un error porque algo anda mal!!');
+    default: return console.log('not found!!');
   }
 
 }
