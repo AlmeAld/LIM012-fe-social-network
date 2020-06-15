@@ -15,6 +15,7 @@ export default () => {
               <!-- <i class="fas fa -suitcase-rolling fa-2x"></i> -->
               Registrarse
             </button>
+            <input type="submit" value="Registrarse" class="btn  btn-tripventure">
           </form>
           <p>¿ya tienes cuenta?
             <span><a href="#/signIn">Inicia Sesión</a></span></p>
