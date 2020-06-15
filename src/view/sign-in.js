@@ -1,3 +1,5 @@
+import { changeView} from '../router/index.js'
+
 export default ()=>{
   const viewSignIn = document.createElement('div');
   viewSignIn.classList.add('container'); 
@@ -26,11 +28,14 @@ export default ()=>{
         </div>
       </div>
 `
+  const btnSingUp = viewSignIn.querySelector('a');
+  btnSingUp.addEventListener('click',()=>{
+    changeView('#/signUp');
+    // console.log('estoy en regisytro');
+  })
 
 return viewSignIn
 }
 
 
 
-{/* <p>¡Hola Viajero!<span>ingrese su información a continuación para registrarte</span></p> 
-<input type="text" placeholder="Nombre y Apellido" required>*/}
