@@ -13,8 +13,10 @@ export const changeView = (route) => {
       return container.appendChild(obComponents.signin)
     case '#/signUp':
       return container.appendChild(obComponents.signup)
+    case '#/home':
+      return container.appendChild(obComponents.home)
 
-    default: return console.log('not found!!');
+    default: return container.appendChild(obComponents.notfound)
   }
 
 }
