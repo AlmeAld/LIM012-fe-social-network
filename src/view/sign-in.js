@@ -36,37 +36,25 @@ export default ()=>{
   btnSingUp.addEventListener('click',()=>{
 
     changeView('#/signUp');
-    // console.log('estoy en regisytro');
   })
   
     const emailLogin = viewSignIn.querySelector('#emailLogin')
     const passwordLogin = viewSignIn.querySelector('#passwordLogin')
     const helperTextEmail = viewSignIn.querySelector('#helperTextEmail')
     const helperTextPassword = viewSignIn.querySelector('#helperTextPassword')
-    const btnLogin = viewSignIn.querySelector('#login')
 
-    //de model
+    const btnLogin = viewSignIn.querySelector('#login')
+    
     validateInputEmail(emailLogin)
-//valida input password
   validateInputPassword(passwordLogin)
   
 //login
   btnLogin.addEventListener('click',(e)=>{
     e.preventDefault();
+    const emailLogin = viewSignIn.querySelector('#emailLogin').value
+    const passwordLogin = viewSignIn.querySelector('#passwordLogin').value
 // Autentificacion con Firebase
-  const user = firebase.auth().currentUser;
-  if (user) {
-    // User is signed in.
-    // changeView('#/home');
-    console.log('user');
-    // window.location.hash = '#/home'
-  } else {
-    // No user is signed in.
-    console.log('no user');
-  }
-
-  login(emailLogin,passwordLogin)
-    // login(validateInputEmail(emailLogin), validateInputPassword(passwordLogin))
+    login(emailLogin, passwordLogin);
 })
 
 
