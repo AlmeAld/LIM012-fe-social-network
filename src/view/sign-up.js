@@ -46,21 +46,8 @@ export default () => {
     console.log(email);
     const password = viewSignUp.querySelector('#password').value
     createUser(email, password)
-    // changeView('#/home');  
+    // changeView('#/home'); 
+    alert('hemos enviado un correo de verificacion, verifique su cuenta para poder iniciar sesión') 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   return viewSignUp
 }
