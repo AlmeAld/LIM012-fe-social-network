@@ -15,6 +15,7 @@
     "stylelint": "stylelint --aei src/**/*.css",
     "pretest": "npm run htmlhint && npm run eslint && npm run stylelint",
     "test": "jest --coverage",
+    "test:watch": "jest --watch",
     "start": "serve src/"
   },
   "devDependencies": {
@@ -22,15 +23,16 @@
     "@babel/plugin-transform-modules-commonjs": "^7.2.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^24.8.0",
-    "eslint": "^6.0.1",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^13.2.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jest": "^22.1.2",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^22.21.0",
+    "firebase-mock": "^2.3.2",
     "htmlhint": "^0.11.0",
     "jest": "^24.8.0",
     "regenerator-runtime": "^0.13.1",
     "serve": "^11.3.2",
-    "stylelint": "^10.1.0",
+    "stylelint": "^13.6.1",
     "stylelint-config-recommended": "^2.2.0"
   }
 }
