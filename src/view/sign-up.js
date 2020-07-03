@@ -32,9 +32,7 @@ export default () => {
   const helperTextPassword = viewSignUp.querySelector('#helperTextPassword')
   const  helperTextEmail = viewSignUp.querySelector('#helperTextEmail')
   
-  // validando input email para registrarse 
   validateInputEmail(email)
-  // validando input password para registrarse
   validateInputPassword(password)
   
   const btnSignup = viewSignUp.querySelector('button');
