@@ -1,5 +1,6 @@
 // import {  } from '../view/sign-in.js'
 
+
 //crear una cuenta
 export const createUser = (email, password, Name)=>{
   firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -8,11 +9,11 @@ export const createUser = (email, password, Name)=>{
     // result.user.updateProfile({
     //   displayName : Name
     // })
-    // const configuracion = {
-    //   url: 'http://localhost:5001/#/signIn'
-    // }
+    const configuracion = {
+      url: 'http://localhost:5000/#/signIn'
+    }
     
-    result.user.sendEmailVerification().catch(error => {
+    result.user.sendEmailVerification(configuracion).catch(error => {
       console.error(error)
       const errorMessage = error.message; 
     })
@@ -35,13 +36,18 @@ export const createUser = (email, password, Name)=>{
   });
 }
 
+//login
 export const login = (emailLogin, passwordLogin)=>{
   firebase.auth().signInWithEmailAndPassword(emailLogin,passwordLogin)
-    .then((userLogin)=>console.log('estoy logeado weeey'))
+    .then((userLogin)=>{
+      window.location.hash = '#/home'
+      console.log('estoy logeado weeey')
+      console.log(userLogin);
+    })
     .catch(function (error) {
       // Handle Errors here.
       var errorCode = error.code;
-      // console.log(errorCode);
+      console.log(errorCode);
       var errorMessage = error.message;
       // [START_EXCLUDE]
       if (errorCode == 'auth/weak-password') {
@@ -54,6 +60,7 @@ export const login = (emailLogin, passwordLogin)=>{
     });
 }
 
-export const currentUser = ()=>{firebase.auth().currentUser}
+
+
 
 
