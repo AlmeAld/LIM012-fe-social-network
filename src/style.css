@@ -14,10 +14,10 @@
   padding: 2rem;
 }
 
-.prueba{
-  /* display: flex; */
-  /* flex-direction:  column; */
-}
+/* .prueba{
+  display: flex; */
+  /* flex-direction:  column; 
+}*/
 
 .title{
 margin-bottom: 1.5rem;
@@ -198,8 +198,37 @@ font-size: 2.5rem;
 .nav-icon{
   font-size: 18px;
 }
+/*home content*/
+.publication{
+  background-color: #f4f4f4;
+  height: 135px;
+  margin-top: 12px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.fa-ellipsis-h{
+  margin-left: 336px;
+  color: #333646;
+}
+.option-privacity, .option-publication{
+  display: none;
+}
+.textarea{
+  width: 70%;
+  height: 65% ;
+  border-radius: 12px;
+  display: block;
+  padding: 7px;
+  margin-left: 3rem;
+}
+.fa-image, .fa-paper-plane{
+  margin-left: 4.5rem;
+  margin-top: 0.5rem;
+}
+.content-posts{
+  background-color: #d9534f;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 
-
+}
 
 
 /* diseño para desktop */
