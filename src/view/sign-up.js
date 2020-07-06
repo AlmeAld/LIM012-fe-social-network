@@ -1,5 +1,5 @@
 import { validateInputPassword, validateInputEmail } from '../model/validate.js';
-import { changeView } from '../router/index.js'
+// import { changeView } from '../router/index.js'
 import { createUser} from '../model/auth.js'
 export default () => {
   const viewSignUp = document.createElement('div');
@@ -36,7 +36,6 @@ export default () => {
   validateInputPassword(password)
   
   const btnSignup = viewSignUp.querySelector('button');
-  console.log(btnSignup);
   btnSignup.addEventListener('click', (e) => {
     //por defecto los formularios se reinician cuando capturas el evento. entonces recibimos un evento 'e' y desde ese evento quiero supreventDefault() para cancelar el evento de reinicio de formulario 
     e.preventDefault();
