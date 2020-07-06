@@ -57,7 +57,33 @@ export default ()=>{
     login(emailLogin, passwordLogin);
 })
 
+//google login
+const btnGoogle = viewSignIn.querySelector('.btn-google')
+btnGoogle.addEventListener('click',(e)=>{
+  // e.preventDefault()
+  const provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider)
+  })
 
+  //facebook login
+  const btnFacebook = viewSignIn.querySelector('.btn-facebook')
+  btnFacebook.addEventListener('click',(e)=>{
+    e.preventDefault()
+    const provider = new firebase.auth.FacebookAuthProvider();
+    firebase.auth().signInWithPopup(provider)
+    .then(result=>{
+      console.log(result);
+      console.log('inicie con facebook');
+      // const token = result.credential.accessToken;
+      // console.log(token);
+      // The signed-in user info.
+      // const user = result.user;
+      // console.log(user);
+    })
+    .catch(error =>{
+      console.log(error);
+    })
+  })
 return viewSignIn
 }
 
