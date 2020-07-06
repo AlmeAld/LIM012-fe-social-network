@@ -10,6 +10,7 @@ export const changeView = (route) => {
     case '':
     case '#/':
     case '#/signIn':
+    case '#/exit':
       return container.appendChild(obComponents.signin)
     case '#/signUp':
       return container.appendChild(obComponents.signup)
