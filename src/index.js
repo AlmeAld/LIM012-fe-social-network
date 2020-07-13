@@ -5,8 +5,6 @@
 
 import { changeView } from './router/index.js';
 
-
-
 const init = () => {
   changeView(window.location.hash);
   window.addEventListener('hashchange', () => {
@@ -14,7 +12,7 @@ const init = () => {
   });
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      window.location.has = '#/home';
+      window.location.hash = '#/home';
     } else {
       window.location.hash = '#/';
     }
