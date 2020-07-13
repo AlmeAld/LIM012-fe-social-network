@@ -1,43 +1,54 @@
-// import { changeView } from '../router/index.js'
-// import { createUser} from '../model/auth.js'
+// import { postsCreated } from './posts.js'
+import { db} from '../firebase-config.js'
 
 export default () => {
   const viewHome = document.createElement('div');
+  // viewHome.id ='main-section'
   viewHome.classList.add('menu');
   viewHome.innerHTML = `
     <div class="header-home">
       <p class="title home-title">Tripventure</p>
     </div>
     <section class='body-content'>
+
       <div class='publication'>
         <i class="fas fa-ellipsis-h"></i>
         <div class='option-privacity'>
-        <i class="fas fa-globe-americas"> Público</i>
-        <i class="fas fa-lock">Privado</i> 
+          <i class="fas fa-globe-americas"> Público</i>
+          <i class="fas fa-lock">Privado</i> 
         </div>
         <textarea placeholder='¿Qué estás pensando?' cols='20' class = 'textarea'> </textarea>
-        <i class="far fa-image fa-lg"></i>
-        <i class="far fa-paper-plane fa-lg"></i>
+        <button class = 'post btn-img'>
+         <i class="far fa-image fa-lg"></i>
+        </button>
+        <button class = 'post btn-send'>
+          <i class="far fa-paper-plane fa-lg"></i>
+        </button>
       </div>
-      <div class = 'content-posts'>
-        <div class= 'info-profile'>
-        <img src="../img/profile1.png" alt="avatar" width = 120px>
-        <h3>Fulana Suarez</h3>
-        <p>5 de julio de 2020</p>
-        <i class="fas fa-ellipsis-h"></i>
-        <div class = 'option-publication' >
-        <i class="fas fa-pen">Editar</i>
-        <i class="fas fa-globe-americas"> Público</i>
-        <i class="fas fa-lock">Privado</i>
-        <i class="far fa-trash-alt">Eliminar</i>
-        </div>
-        <div class='content-message'>
-          <p>Hola soy fulanas</p>
-        </div>
-        <i class="far fa-heart"></i>
-        <i class="far fa-comment-alt"></i>
+
+      <div class = 'posts-main'>
       </div>
+
       </div>
+    </section>
+    <nav class="nav">
+      <a href="#/home" class="nav-link">
+        <i class="fas fa-home nav-icon"></i>
+        <span class="nav-text">Home</span>
+      </a>
+      <a href="#/perfil" class="nav-link">
+        <i class="fas fa-user nav-icon"></i>
+        <span class="nav-text">Perfil</span>
+      </a>
+      <a href="#/setting" class="nav-link">
+        <i class="fas fa-cog nav-icon"></i>
+        <span class="nav-text">Configurar</span>
+      </a>
+      <a href="#/exit" class="nav-link" id='exit'>
+        <i class="fas fa-sign-out-alt nav-icon"></i>
+        <span class="nav-text">Salir</span>
+      </a>
+    </nav>
     </section>
     <nav class="nav">
       <a href="#/home" class="nav-link">
@@ -71,6 +82,87 @@ export default () => {
       console.log(error)
     })
   })
-    
+
+  
+  const btnSend = viewHome.querySelector('.btn-send')
+  btnSend.addEventListener('click',()=>{
+    const user = firebase.auth().currentUser;
+    console.log(user);
+    const contentPost = viewHome.querySelector('.textarea').value
+    const displayName = user.displayName
+    const photo = user.photoURL
+    const hoy = new Date();
+    const date = (`${hoy.getDate()}-${hoy.getMonth() + 1}-${hoy.getFullYear()}`);
+    const hora = `${hoy.getHours()}:${hoy.getMinutes()}`;
+    const fecha = date
+    // const db = firebase.firestore();
+    db.collection('posts').doc().set({
+      userName: displayName,
+      photoURL: photo,
+      postFecha: fecha,
+      postHora : hora,
+      posts: contentPost,
+    });
+
+  })
+
+  //onSnapshot a toda la coleccion('posts')
+  //sin onSnapshot
+  // db.collection('posts').get().then((querySnapshot) => {
+  //   querySnapshot.forEach((doc) => {
+  //     console.log(`${doc.id} => ${doc.data().userName}
+  //     => ${doc.data().photoURL} => ${doc.data().postFecha} => ${doc.data().posts}`);
+  //   });
+  // });
+  //con onsnapshot
+  // db.collection('posts')
+  //   .onSnapshot((querySnapshot) => {
+  //     querySnapshot.forEach((doc) => {
+  //       console.log(` Con onSnapshot ${doc.id} => ${doc.data().userName}
+  //     => ${doc.data().photoURL} => ${doc.data().postFecha} => ${doc.data().posts}`);
+  //     })
+  //   })
+
+  const pintarPost = viewHome.querySelector('.posts-main')
+  console.log(pintarPost);
+  pintarPost.innerHTML = '';
+  db.collection('posts')
+    .orderBy('postFecha','desc')
+    .onSnapshot((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const postContent = document.createElement('div');
+        postContent.classList.add('content-posts');
+        postContent.innerHTML = `
+          <div class= 'data-user'>
+            <img src=${doc.data().photoURL} alt="avatar" s class = 'photo-user'>
+            <h3 class = 'name-user'>${doc.data().userName}</h3>
+            <p class='date'>${doc.data().postFecha} </p>
+            <p class='hour'>${doc.data().postHora} </p>
+            <i class="fas fa-ellipsis-h"></i>
+            <div class = 'option-publication' >
+              <i class="fas fa-pen">Editar</i>
+              <i class="fas fa-globe-americas"> Público</i>
+              <i class="fas fa-lock">Privado</i>
+              <i class="far fa-trash-alt">Eliminar</i>
+            </div>
+          </div>
+          <div class='content-message'>
+            <p class='message'>${doc.data().posts}</p>
+          </div>
+          <div class= 'like-coment'>
+            <button class ='like'>
+              <i class="far fa-heart fa-lg"></i>
+            </button>
+            0 
+            <button class=coment>
+              <i class="far fa-comment-alt fa-lg"></i>
+            </button>
+          </div>`
+        pintarPost.appendChild(postContent)
+      })
+    })
+
+
+
   return viewHome
 }
