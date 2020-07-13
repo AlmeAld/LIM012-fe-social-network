@@ -60,7 +60,7 @@ export default ()=>{
 //google login
 const btnGoogle = viewSignIn.querySelector('.btn-google')
 btnGoogle.addEventListener('click',(e)=>{
-  // e.preventDefault()
+  e.preventDefault()
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider)
   })
