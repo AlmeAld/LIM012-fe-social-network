@@ -12,14 +12,16 @@ export default () => {
     <section class='body-content'>
 
       <div class='publication'>
-        <i class="fas fa-ellipsis-h"></i>
+        <button class= 'btn-modal-toPost>'
+          <i class="fas fa-ellipsis-h"></i>
+        </button>
         <div class='option-privacity'>
           <i class="fas fa-globe-americas"> Público</i>
           <i class="fas fa-lock">Privado</i> 
         </div>
         <textarea placeholder='¿Qué estás pensando?' cols='20' class = 'textarea'> </textarea>
         <button class = 'post btn-img'>
-         <i class="far fa-image fa-lg"></i>
+          <i class="far fa-image fa-lg"></i>
         </button>
         <button class = 'post btn-send'>
           <i class="far fa-paper-plane fa-lg"></i>
@@ -123,6 +125,7 @@ export default () => {
   //     })
   //   })
 
+
   const pintarPost = viewHome.querySelector('.posts-main')
   console.log(pintarPost);
   pintarPost.innerHTML = '';
@@ -138,14 +141,13 @@ export default () => {
             <h3 class = 'name-user'>${doc.data().userName}</h3>
             <p class='date'>${doc.data().postFecha} </p>
             <p class='hour'>${doc.data().postHora} </p>
-            <i class="fas fa-ellipsis-h"></i>
-            <div class = 'option-publication' >
-              <i class="fas fa-pen">Editar</i>
-              <i class="fas fa-globe-americas"> Público</i>
-              <i class="fas fa-lock">Privado</i>
-              <i class="far fa-trash-alt">Eliminar</i>
+            <button class= 'btn-modal'>
+              <i class="fas fa-ellipsis-h"></i>
+            </button>
+            <div class = 'option-publication'>
             </div>
           </div>
+
           <div class='content-message'>
             <p class='message'>${doc.data().posts}</p>
           </div>
@@ -159,8 +161,26 @@ export default () => {
             </button>
           </div>`
         pintarPost.appendChild(postContent)
+
+        //modal
+        const modalContainer = postContent.querySelector('.option-publication')
+        modalContainer.innerHTML = `
+          <button class= 'setting-post'><i class="fas fa-pen"></i>Edit</button>
+          <button class= 'setting-post'><i class="fas fa-globe-americas"></i>Public</button>
+          <button class= 'setting-post'><i class="fas fa-lock"></i>Private</button>
+          <button class= 'setting-post'><i class="fas fa-trash-alt"></i>Remove</button>
+          `
+
+        const btnModal = postContent.querySelector('.btn-modal')
+        btnModal.addEventListener('click', ()=>{
+          console.log('click en opcion del modal');
+          modalContainer.style.display='flex'
+        })
+
       })
     })
+
+
 
 
 
