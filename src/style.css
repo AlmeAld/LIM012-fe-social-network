@@ -232,41 +232,55 @@ font-size: 2.5rem;
 /* .btn-modal-toPost{
   justify-content: flex-end;
 } */
-.option-privacity{
+/* .option-privacity{
   cursor: pointer;
   display: none;
   color: black;
   background-color: chartreuse;
-}
-.btn-modal{
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  margin: 0;
-  font: inherit;
+} */
+.privacidad{
+  /* background-color: #B8FCC6; */
   cursor: pointer;
-  outline: inherit
+  width: 7.5rem;
+  margin: 2px 14.5rem;
+  position: relative
 }
-.option-publication{
+.privacidad ul{
   display: none;
-  color: #333646;
-  height: 6.5rem;
-  width: 7rem;
+  list-style-type: none;
+}
+.privacidad.open ul{
+  display: block;
+}
+.privacidad.open li:hover{
+  background-color: #B8FCC6;
+}
+.option-privacity-post{
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.o-publication{
+  cursor: pointer;
+  width: 7.5rem;
+  height: 7rem;
+}
+.content-option-post{
+  width: 7.5rem;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  position: absolute;
-  top: 1rem;
-  left: 14.5rem;;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 6px;
+}
+.o-publication ul{
+  display: none;
+  list-style-type: none;
+}
+.o-publication.open ul{
+  display: block;
 }
 .setting-post{
   background: none;
   color: inherit;
   border: none;
   padding: 0;
-  margin: 0;
+  margin-top: 6px;
   font: inherit;
   cursor: pointer;
   outline: inherit
