@@ -1,5 +1,8 @@
 import{postPrivacy} from '../model/firestore.js'
+import { deletePost } from '../model/firestore.js'
+
 export default(data)=>{
+  console.log(data.id);
   const postContent = document.createElement('div');
   postContent.classList.add('content-posts');
   postContent.innerHTML= `
@@ -62,14 +65,18 @@ export default(data)=>{
   //evento para poner el post en privado
   const optionPrivatePost = btnModal.querySelector('.private-post')
   optionPrivatePost.addEventListener('click', () => {
-    console.log('click en post privado');
     postPrivacy(data.id, 'private')
 
   })
   //evento para poner eliminar un post
   const optionRemovePost = btnModal.querySelector('.remove-post')
   optionRemovePost.addEventListener('click', () => {
-    console.log('click en eliminar post');
+  })
+
+  //eliminar un post
+  const remove = modalContainer.querySelector('.remove-post')
+  remove.addEventListener('click',()=>{
+    deletePost(data.id)
   })
 
   //funcionalidad a opciones del Post publicado
