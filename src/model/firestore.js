@@ -27,5 +27,8 @@ export const getPost = (callback) => {
       callback(data);
       // console.log(data);
     })
-  
+  }
+
+  export const deletePost = (idPost) =>{
+    db.collection('posts').doc(idPost).delete()
   }
