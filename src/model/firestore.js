@@ -1,10 +1,31 @@
+import{db} from '../firebase-config.js'
 
-//creando el documento para los usuarios
-export const infoUser = (user)=>{
-  const db = firebase.firestore();
-  db.collection('usuarios').doc(user.email).set({
-    userEmail: user.email,
-    userName: user.displayName,
-    urlPhoto: user.photoURL,
-  });
+//update post
+export const postPrivacy =(id, status)=>{
+  db.collection('posts').doc(id).update({
+    postStatus: status,
+  })
 }
+
+//get post
+export const getPost = (callback) => {
+  db.collection('posts')
+    .orderBy('postFecha', 'desc')
+    .onSnapshot((querySnapshot) => {
+      let data = []
+      querySnapshot.forEach((doc) => {
+        // console.log(doc.id);
+        const obj ={
+          id: doc.id,
+          photoURL: doc.data().photoURL,
+          userName:doc.data().userName,
+          postHora: doc.data().postHora,
+          posts: doc.data().posts,
+        }
+        data.push(obj)
+      })
+      callback(data);
+      // console.log(data);
+    })
+  
+  }
