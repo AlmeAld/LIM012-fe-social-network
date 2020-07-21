@@ -1,6 +1,7 @@
 // import { postsCreated } from './posts.js'
-import { db} from '../firebase-config.js'
-
+import { db } from '../firebase-config.js'
+import { getPost } from '../model/firestore.js'
+import postContent from './posts.js'
 export default () => {
   const viewHome = document.createElement('div');
   // viewHome.id ='main-section'
@@ -12,12 +13,24 @@ export default () => {
     <section class='body-content'>
 
       <div class='publication'>
-        <button class= 'btn-modal-toPost>'
-          <i class="fas fa-ellipsis-h"></i>
-        </button>
+        
         <div class='option-privacity'>
-          <i class="fas fa-globe-americas"> Público</i>
-          <i class="fas fa-lock">Privado</i> 
+          
+          <div class= 'privacidad'>
+            Privacidad <i class="fas fa-ellipsis-h"></i>
+            <div class='option-privacity-post' id= 'privacidad-post'>
+              <ul>
+                <li class= 'public'>
+                  <i class="fas fa-globe-americas"></i>
+                  <span> Publica</span>
+                </li>
+                <li class = 'private' >
+                  <i class="fas fa-lock"></i>
+                  <span >Privado</span>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
         <textarea placeholder='¿Qué estás pensando?' cols='20' class = 'textarea'> </textarea>
         <button class = 'post btn-img'>
@@ -73,115 +86,83 @@ export default () => {
     
 `
   const btnSignOut = viewHome.querySelector('#exit')
-  btnSignOut.addEventListener('click',(e)=>{
+  btnSignOut.addEventListener('click', (e) => {
     e.preventDefault()
     firebase.auth().signOut()
-    .then(()=> {
-      console.log('saliendo')
-      window.location.hash ='#/exit'
-    })
-    .catch((error)=> {
-      console.log(error)
-    })
+      .then(() => {
+        console.log('saliendo')
+        window.location.hash = '#/exit'
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   })
 
-  
+
+  const pintarPost = viewHome.querySelector('.posts-main')
+  // console.log(pintarPost);
+  let status = '';
   const btnSend = viewHome.querySelector('.btn-send')
-  btnSend.addEventListener('click',()=>{
+
+  btnSend.addEventListener('click', () => {
     const user = firebase.auth().currentUser;
     console.log(user);
     const contentPost = viewHome.querySelector('.textarea').value
     const displayName = user.displayName
     const photo = user.photoURL
     const hoy = new Date();
-    const date = (`${hoy.getDate()}-${hoy.getMonth() + 1}-${hoy.getFullYear()}`);
+    const date = (`${hoy.getDate()}/${hoy.getMonth() + 1}/${hoy.getFullYear()}`);
     const hora = `${hoy.getHours()}:${hoy.getMinutes()}`;
-    const fecha = date
-    // const db = firebase.firestore();
+    // const fecha = date;
+    console.log(status);
+    //creando
     db.collection('posts').doc().set({
       userName: displayName,
       photoURL: photo,
-      postFecha: fecha,
-      postHora : hora,
+      postFecha: hoy,
+      postHora: hora,
       posts: contentPost,
+      postStatus: status,
     });
-
+    // pintarPost.innerHTML = '';
+    // postsPintados(pintarPost)
   })
 
-  //onSnapshot a toda la coleccion('posts')
-  //sin onSnapshot
-  // db.collection('posts').get().then((querySnapshot) => {
-  //   querySnapshot.forEach((doc) => {
-  //     console.log(`${doc.id} => ${doc.data().userName}
-  //     => ${doc.data().photoURL} => ${doc.data().postFecha} => ${doc.data().posts}`);
-  //   });
-  // });
-  //con onsnapshot
-  // db.collection('posts')
-  //   .onSnapshot((querySnapshot) => {
-  //     querySnapshot.forEach((doc) => {
-  //       console.log(` Con onSnapshot ${doc.id} => ${doc.data().userName}
-  //     => ${doc.data().photoURL} => ${doc.data().postFecha} => ${doc.data().posts}`);
-  //     })
-  //   })
+  //pintar los post
+  const postsPintados = (dataArray) => {
+    console.log(dataArray);
+    pintarPost.innerHTML = ''
+    dataArray.forEach(element => {
+      const templatePost = postContent(element)
+      pintarPost.appendChild(templatePost)
+    });
+  }
+  // pintarPost.innerHTML = '';
+  // postsPintados(pintarPost)
+  getPost(postsPintados)
 
-
-  const pintarPost = viewHome.querySelector('.posts-main')
-  console.log(pintarPost);
-  pintarPost.innerHTML = '';
-  db.collection('posts')
-    .orderBy('postFecha','desc')
-    .onSnapshot((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        const postContent = document.createElement('div');
-        postContent.classList.add('content-posts');
-        postContent.innerHTML = `
-          <div class= 'data-user'>
-            <img src=${doc.data().photoURL} alt="avatar" s class = 'photo-user'>
-            <h3 class = 'name-user'>${doc.data().userName}</h3>
-            <p class='date'>${doc.data().postFecha} </p>
-            <p class='hour'>${doc.data().postHora} </p>
-            <button class= 'btn-modal'>
-              <i class="fas fa-ellipsis-h"></i>
-            </button>
-            <div class = 'option-publication'>
-            </div>
-          </div>
-
-          <div class='content-message'>
-            <p class='message'>${doc.data().posts}</p>
-          </div>
-          <div class= 'like-coment'>
-            <button class ='like'>
-              <i class="far fa-heart fa-lg"></i>
-            </button>
-            0 
-            <button class=coment>
-              <i class="far fa-comment-alt fa-lg"></i>
-            </button>
-          </div>`
-        pintarPost.appendChild(postContent)
-
-        //modal
-        const modalContainer = postContent.querySelector('.option-publication')
-        modalContainer.innerHTML = `
-          <button class= 'setting-post'><i class="fas fa-pen"></i>Edit</button>
-          <button class= 'setting-post'><i class="fas fa-globe-americas"></i>Public</button>
-          <button class= 'setting-post'><i class="fas fa-lock"></i>Private</button>
-          <button class= 'setting-post'><i class="fas fa-trash-alt"></i>Remove</button>
-          `
-
-        const btnModal = postContent.querySelector('.btn-modal')
-        btnModal.addEventListener('click', ()=>{
-          console.log('click en opcion del modal');
-          modalContainer.style.display='flex'
-        })
-
-      })
-    })
-
-
-
+  //boton de privacidad publica para escribir post
+  const btnPrivacidad = viewHome.querySelector('.privacidad')
+  const optionPublic = btnPrivacidad.querySelector('.public')
+  optionPublic.addEventListener('click', () => {
+    console.log(' click en publico');
+    status = 'public'
+  })
+  //boton de privada para escribir post
+  const optionPrivate = btnPrivacidad.querySelector('.private')
+  optionPrivate.addEventListener('click', () => {
+    console.log('click en privado');
+    status = 'private'
+  })
+  //funcionalidad al div privacidad
+  window.addEventListener('click', (e) => {
+    console.log('click en window');
+    if (btnPrivacidad.contains(e.target)) {
+      btnPrivacidad.classList.toggle('open');
+    } else {
+      btnPrivacidad.classList.remove('open');
+    }
+  });
 
 
   return viewHome
