@@ -2,6 +2,8 @@
 import { db } from '../firebase-config.js'
 import { getPost } from '../model/firestore.js'
 import postContent from './posts.js'
+
+
 export default () => {
   const viewHome = document.createElement('div');
   // viewHome.id ='main-section'
@@ -130,7 +132,7 @@ export default () => {
 
   //pintar los post
   const postsPintados = (dataArray) => {
-    console.log(dataArray);
+    // console.log(dataArray);
     pintarPost.innerHTML = ''
     dataArray.forEach(element => {
       const templatePost = postContent(element)
@@ -163,7 +165,6 @@ export default () => {
       btnPrivacidad.classList.remove('open');
     }
   });
-
 
   return viewHome
 }
