@@ -1,13 +1,13 @@
-import{postPrivacy} from '../model/firestore.js'
+import{postPrivacy, editPost} from '../model/firestore.js'
 import { deletePost } from '../model/firestore.js'
-
+//${imgPost}
 export default(data)=>{
-  console.log(data.id);
+  // console.log(data.id);
   const postContent = document.createElement('div');
   postContent.classList.add('content-posts');
   postContent.innerHTML= `
     <div class= 'data-user'>
-      <img src=${data.photoURL} alt="avatar" s class = 'photo-user'>
+      <img src=${data.photoURL} alt="avatar" class = 'photo-user'>
       <h3 class = 'name-user'>${data.userName}</h3>
       <p class='hour'>${data.postHora} </p>
       <div class = 'option-publication'></div>
@@ -15,6 +15,9 @@ export default(data)=>{
   
     <div class='content-message'>
       <p class='message'>${data.posts}</p>
+      <div class="get-img" type="file" accept="image/*">
+        ${(data.img !== undefined) ? `<img class="image-post" src="" alt=""/>` : `<img class="hide image-post" src="" alt=""/>`}
+      </div>
     </div>
     <div class= 'like-coment'>
       <button class ='like'>
@@ -55,6 +58,7 @@ export default(data)=>{
   const optionEditPost = btnModal.querySelector('.edit-post')
   optionEditPost.addEventListener('click', () => {
     console.log('click en editar post');
+    editPost(data.id, 'post editado')
   })
 
   //evento para poner el post en publico
