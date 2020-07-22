@@ -2,6 +2,7 @@
 import { db } from '../firebase-config.js'
 import { getPost } from '../model/firestore.js'
 import postContent from './posts.js'
+// import{uploadImage } from '../model/storage.js'
 
 
 export default () => {
@@ -35,9 +36,12 @@ export default () => {
           </div>
         </div>
         <textarea placeholder='¿Qué estás pensando?' cols='20' class = 'textarea'> </textarea>
-        <button class = 'post btn-img'>
-          <i class="far fa-image fa-lg"></i>
-        </button>
+        
+        <label class = 'btn-file'>
+        <i class="far fa-image fa-lg"></i>
+        <input type='file' name= '' class='post-photo' id='photo' hidden>
+        </label>
+      
         <button class = 'post btn-send'>
           <i class="far fa-paper-plane fa-lg"></i>
         </button>
@@ -105,19 +109,19 @@ export default () => {
   // console.log(pintarPost);
   let status = '';
   const btnSend = viewHome.querySelector('.btn-send')
-
-  btnSend.addEventListener('click', () => {
+  btnSend.addEventListener('click', (e) => {
+    e.preventDefault()
     const user = firebase.auth().currentUser;
-    console.log(user);
     const contentPost = viewHome.querySelector('.textarea').value
     const displayName = user.displayName
     const photo = user.photoURL
+    const getPhoto = viewHome.querySelector('#photo')
+    const imgPost = getPhoto.files[0]
+    const date = new Date().toLocaleString()
     const hoy = new Date();
-    const date = (`${hoy.getDate()}/${hoy.getMonth() + 1}/${hoy.getFullYear()}`);
     const hora = `${hoy.getHours()}:${hoy.getMinutes()}`;
-    // const fecha = date;
     console.log(status);
-    //creando
+    // creando
     db.collection('posts').doc().set({
       userName: displayName,
       photoURL: photo,
@@ -125,9 +129,17 @@ export default () => {
       postHora: hora,
       posts: contentPost,
       postStatus: status,
+      // img: imgPost
+      // postEdit:editPost
     });
-    // pintarPost.innerHTML = '';
-    // postsPintados(pintarPost)
+
+    // db.collection('posts').add({
+    //   id: user.uid,
+    //   postHora: hora,
+    //   userName: displayName,
+    //   contentpost: contentPost,
+    //   postStatus: status,
+    // })
   })
 
   //pintar los post
@@ -147,15 +159,14 @@ export default () => {
   const btnPrivacidad = viewHome.querySelector('.privacidad')
   const optionPublic = btnPrivacidad.querySelector('.public')
   optionPublic.addEventListener('click', () => {
-    console.log(' click en publico');
     status = 'public'
   })
   //boton de privada para escribir post
   const optionPrivate = btnPrivacidad.querySelector('.private')
   optionPrivate.addEventListener('click', () => {
-    console.log('click en privado');
     status = 'private'
   })
+
   //funcionalidad al div privacidad
   window.addEventListener('click', (e) => {
     console.log('click en window');
