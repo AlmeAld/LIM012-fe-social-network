@@ -70,27 +70,9 @@ export default () => {
         <span class="nav-text">Salir</span>
       </a>
     </nav>
-    </section>
-    <nav class="nav">
-      <a href="#/home" class="nav-link">
-        <i class="fas fa-home nav-icon"></i>
-        <span class="nav-text">Home</span>
-      </a>
-      <a href="#/perfil" class="nav-link">
-        <i class="fas fa-user nav-icon"></i>
-        <span class="nav-text">Perfil</span>
-      </a>
-      <a href="#/setting" class="nav-link">
-        <i class="fas fa-cog nav-icon"></i>
-        <span class="nav-text">Configurar</span>
-      </a>
-      <a href="#/exit" class="nav-link" id='exit'>
-        <i class="fas fa-sign-out-alt nav-icon"></i>
-        <span class="nav-text">Salir</span>
-      </a>
-    </nav>
+    </section>`
+
     
-`
   const btnSignOut = viewHome.querySelector('#exit')
   btnSignOut.addEventListener('click', (e) => {
     e.preventDefault()
