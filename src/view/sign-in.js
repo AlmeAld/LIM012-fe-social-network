@@ -27,7 +27,7 @@ export default ()=>{
           <button class="btn btn-google">
             <i class="fab fa-google"></i>
           </button>
-          <p>¿No tienes cuenta?
+          <p class = 'render signup-render'>¿No tienes cuenta?
             <span><a href="#/signUp">Registrate</a></span></p>
         </div>
       </div>

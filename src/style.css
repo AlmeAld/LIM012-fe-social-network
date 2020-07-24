@@ -14,11 +14,6 @@
   padding: 2rem;
 }
 
-/* .prueba{
-  display: flex; */
-  /* flex-direction:  column; 
-}*/
-
 .title{
 margin-bottom: 1.5rem;
 font-family: 'Londrina Solid', cursive;
@@ -29,7 +24,9 @@ color: black;
 
 .welcome-text{
   padding: 0 1.5rem;
-  
+  font-family: 'Gayathri', sans-serif;
+  font-size: 20px;
+  text-align: justify;
 }
 .signup{
   text-align: center;
@@ -102,26 +99,18 @@ button:disabled{
   border-radius: 50px;
   margin-bottom: 0.5rem;
   background-color:#395185 ;
+  margin-left: 3rem;
 }
 .btn-google{
   background-color: #d9534f;
 }
 
-/* css for home*/
-/* .header-nav{
+.render{
+  margin: 1rem 1rem;
   text-align: center;
-  border-bottom: 1px solid #c5bfbf;
+  font-family: 'EB Garamond', serif;
+  font-size: 18px;
 }
-.logo{
-    width: 20px;
-}
-
-.home-container{
-  height:calc(100vh - 32px);
-  background-color: #fff;
-} */
-
-
 
 /*page 404*/
 .notfound-container{
@@ -159,7 +148,6 @@ button:disabled{
   height: 100%;
   margin: 5px;
   width: 100%;
-  /* padding: 0 28rem; */
 }
 .header-home{
   background-color:#B8FCC6 ;
@@ -234,15 +222,6 @@ font-size: 2.5rem;
   /* margin-left: 336px;  */
   color: #333646;
 } 
-/* .btn-modal-toPost{
-  justify-content: flex-end;
-} */
-/* .option-privacity{
-  cursor: pointer;
-  display: none;
-  color: black;
-  background-color: chartreuse;
-} */
 .privacidad{
   /* background-color: #B8FCC6; */
   cursor: pointer;
@@ -297,10 +276,6 @@ font-size: 2.5rem;
   color: #333646;
 }
 
-/* .fa-image, .fa-paper-plane{
-  margin-left: 4.5rem;
-  margin-top: 0.5rem;
-} */
 .content-posts{
   background-color: #ffff;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
