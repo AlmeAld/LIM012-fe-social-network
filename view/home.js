@@ -152,7 +152,7 @@ export default () => {
   //funcionalidad al div privacidad
   window.addEventListener('click', (e) => {
     console.log('click en window');
-    if (btnPrivacidad.contains(e.target)) {
+    if (btnPrivacidad.containszoo)) {
       btnPrivacidad.classList.toggle('open');
     } else {
       btnPrivacidad.classList.remove('open');

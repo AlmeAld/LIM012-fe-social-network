@@ -48,7 +48,7 @@ export const login = (emailLogin, passwordLogin)=>{
     .catch(function (error) {
       // Handle Errors here.
       var errorCode = error.code;
-      console.log(errorCode);
+      console.log(`${errorCode}No hay registro de usuario correspondiente a este identificador. El usuario puede haber sido eliminado.` );
       var errorMessage = error.message;
       // [START_EXCLUDE]
       if (errorCode == 'auth/weak-password') {

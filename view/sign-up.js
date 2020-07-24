@@ -9,7 +9,7 @@ export default () => {
       <div class="prueba">
         <div class="content">
           <h1 class="title">TripVenture</h1>
-          <p class="welcome-text">¡Hola Viajerx!<span>Ingrese su información a continuación para registrarse</span></p>
+          <p class="welcome-text">¡Hola Viajerx!<span> Ingrese su información a continuación para registrarse</span></p>
           <form action="/signup" class="signup">
             <input type="text" placeholder="Nombre y Apellidos" required class="name-login">
             <input type="email" placeholder="e-mail" required class="email-login" id='email'>
@@ -20,7 +20,7 @@ export default () => {
               Registrarse
             </button>
           </form>
-          <p>¿ya tienes cuenta?
+          <p class = 'render signin-render'>¿ya tienes cuenta?
             <span><a href="#/signIn">Inicia Sesión</a></span></p>
         </div>
       </div>

@@ -44,7 +44,6 @@ export const getPost = (callback) => {
           img: doc.data().img,
         }
         data.push(obj)
-        console.log(doc.id);
       })
       callback(data);
     })
